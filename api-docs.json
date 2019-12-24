@@ -1,0 +1,207 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Transaction Open Bank Transformer",
+      "description": "Transaction Controller"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Transaction Open Bank Transformer"
+        ],
+        "summary": "Greeting endpoint",
+        "description": "Used for test",
+        "operationId": "welcomeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/transactions": {
+      "get": {
+        "tags": [
+          "Transaction Open Bank Transformer"
+        ],
+        "summary": "Retrieve transactions from Open Bank and transform it",
+        "description": "Used for test",
+        "operationId": "retrieveTransactionsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ACCOUNT_ID",
+            "in": "path",
+            "description": "ACCOUNT_ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "BANK_ID",
+            "in": "path",
+            "description": "BANK_ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "transactionType",
+            "in": "query",
+            "description": "transactionType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Transaction"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/banks/{BANK_ID}/accounts/{ACCOUNT_ID}/transactions/count": {
+      "get": {
+        "tags": [
+          "Transaction Open Bank Transformer"
+        ],
+        "summary": "countFilteredTransactionsByType",
+        "operationId": "countFilteredTransactionsByTypeUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "ACCOUNT_ID",
+            "in": "path",
+            "description": "ACCOUNT_ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "BANK_ID",
+            "in": "path",
+            "description": "BANK_ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "transactionType",
+            "in": "query",
+            "description": "transactionType",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Transaction": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "counterPartyLogoPath": {
+          "type": "string"
+        },
+        "counterpartyAccount": {
+          "type": "string"
+        },
+        "counterpartyName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "instructedAmount": {
+          "type": "string"
+        },
+        "instructedCurrency": {
+          "type": "string"
+        },
+        "transactionAmount": {
+          "type": "string"
+        },
+        "transactionCurrency": {
+          "type": "string"
+        },
+        "transactionType": {
+          "type": "string"
+        }
+      },
+      "title": "Transaction"
+    }
+  }
+}
