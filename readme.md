@@ -3,6 +3,11 @@
 to run application
 `mvn clean install jetty:run`
 
+#### Default Credentials
+User:     `user`
+Password: `password`
+
+
 Swagger endpoint
 `http://localhost:8080/swagger-ui.html`
 
